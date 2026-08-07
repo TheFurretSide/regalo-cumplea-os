@@ -143,7 +143,7 @@ function renderWelcomeScreen() {
       <h1 class="welcome-title">${QUIZ_CONFIG.welcomeTitle}</h1>
       <p class="welcome-subtitle">${QUIZ_CONFIG.welcomeSubtitle}</p>
       
-      <img src="img/circus_banner.jpg" alt="Circo Mágico de Cumpleaños" class="banner-img-preview" onerror="this.style.display='none'" />
+      <img src="img/circus_banner.jpg?v=2" alt="Circo Mágico de Cumpleaños" class="banner-img-preview" onerror="this.style.display='none'" />
       
       <button class="btn-primary" onclick="startQuiz()">
         🎟️ ¡Entrar a la Carpa & Iniciar Trivia! ✨
@@ -292,7 +292,7 @@ function renderFinaleScreen() {
       
       <div class="photo-frame-container">
         <div class="photo-frame">
-          <img src="${final.imageSrc}" alt="Cumpleañer@" onerror="this.src='img/circus_banner.jpg'" />
+          <img src="${final.imageSrc}" alt="Cumpleañer@" onerror="this.src='img/circus_banner.jpg?v=2'" />
         </div>
         <div class="photo-caption">${final.imageCaption || ""}</div>
       </div>

@@ -82,7 +82,7 @@ Gracias por contagiar a todos con tu energía tan especial, por tus risas y por 
 ¡Que comience la función de un año lleno de magia! ✨💖🎈`,
     
     // Ruta de la imagen (puedes cambiar 'img/cumpleanero.jpg' por cualquier foto)
-    imageSrc: "img/cumpleanero.jpg",
+    imageSrc: "img/cumpleanero.jpg?v=2",
     imageCaption: "📸 ¡El/La protagonista de esta gran fiesta de cumpleaños!",
     
     // Vales/Cupones de regalo interactivos
