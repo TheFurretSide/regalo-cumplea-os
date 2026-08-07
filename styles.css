@@ -1,0 +1,655 @@
+/* -------------------------------------------------------------
+   🎪 ESTILOS DEL CIRCO MÁGICO DE CUMPLEAÑOS (PASTEL THEME)
+   ------------------------------------------------------------- */
+
+:root {
+  --font-family: 'Fredoka', 'Outfit', system-ui, -apple-system, sans-serif;
+  
+  /* Paleta Pastel Festiva */
+  --bg-gradient-1: #FFF5F7;
+  --bg-gradient-2: #FFF0ED;
+  --bg-stripe-1: rgba(255, 183, 197, 0.18);
+  --bg-stripe-2: rgba(254, 253, 150, 0.18);
+  
+  --primary-pink: #FF85A1;
+  --primary-pink-dark: #FF6B81;
+  --pastel-yellow: #FFF275;
+  --pastel-gold: #F4C430;
+  --pastel-gold-glow: rgba(244, 196, 48, 0.4);
+  --pastel-mint: #95E1D3;
+  --pastel-lavender: #E8DFF5;
+  --pastel-peach: #FCE1E4;
+  --text-dark: #4A3E4E;
+  --text-muted: #7D6B83;
+  --white: #FFFFFF;
+
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --card-shadow: 0 20px 40px rgba(125, 107, 131, 0.12);
+  --card-border: 2px solid rgba(255, 255, 255, 0.9);
+  
+  --curtain-color-1: #FF758F;
+  --curtain-color-2: #FF4D6D;
+  --curtain-gold: #FFD166;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-family);
+  background: radial-gradient(circle at top center, var(--bg-gradient-1), var(--bg-gradient-2));
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Fondo con rayado sutil de carpa de circo pastel */
+.circus-bg-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--bg-stripe-1),
+    var(--bg-stripe-1) 30px,
+    var(--bg-stripe-2) 30px,
+    var(--bg-stripe-2) 60px
+  );
+  opacity: 0.8;
+}
+
+/* Canvas para Confeti y Estrellas */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* -------------------------------------------------------------
+   🎪 CORTINAS DEL CIRCO (GRAND FINALE REVEAL)
+   ------------------------------------------------------------- */
+.curtains-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  pointer-events: none;
+  display: flex;
+  visibility: hidden;
+}
+
+.curtains-container.active {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.curtain {
+  width: 50vw;
+  height: 100vh;
+  background: linear-gradient(90deg, var(--curtain-color-1) 0%, var(--curtain-color-2) 50%, var(--curtain-color-1) 100%);
+  background-size: 80px 100%;
+  position: absolute;
+  top: 0;
+  transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.2);
+}
+
+.curtain-left {
+  left: 0;
+  border-right: 6px solid var(--curtain-gold);
+}
+
+.curtain-right {
+  right: 0;
+  border-left: 6px solid var(--curtain-gold);
+}
+
+/* Estado de cortina abierta */
+.curtains-container.open .curtain-left {
+  transform: translateX(-100%);
+}
+
+.curtains-container.open .curtain-right {
+  transform: translateX(100%);
+}
+
+.curtain-valance {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 60px;
+  background: var(--curtain-gold);
+  border-bottom: 4px dashed #FFF;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  z-index: 101;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* -------------------------------------------------------------
+   🎪 BARRA DE CONTROL SUPERIOR (AUDIO Y MARQUEE)
+   ------------------------------------------------------------- */
+.top-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 2px dashed var(--primary-pink);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-pink-dark);
+}
+
+.audio-btn {
+  background: var(--white);
+  border: 2px solid var(--primary-pink);
+  color: var(--primary-pink-dark);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 133, 161, 0.2);
+}
+
+.audio-btn:hover {
+  transform: translateY(-2px);
+  background: var(--primary-pink);
+  color: var(--white);
+}
+
+/* -------------------------------------------------------------
+   🎪 CONTENEDOR PRINCIPAL
+   ------------------------------------------------------------- */
+.main-wrapper {
+  max-width: 720px;
+  margin: 20px auto 60px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Marquesina de Luces */
+.marquee-frame {
+  background: linear-gradient(135deg, #FFF, #FFF8F9);
+  border-radius: 28px;
+  padding: 24px;
+  border: 4px solid var(--primary-pink);
+  box-shadow: var(--card-shadow), inset 0 0 0 4px var(--pastel-yellow);
+  position: relative;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+/* Luces alrededor del marco */
+.marquee-lights {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border-radius: 20px;
+  border: 2px dotted var(--pastel-gold);
+  pointer-events: none;
+  animation: lightsBlink 1.5s infinite alternate;
+}
+
+@keyframes lightsBlink {
+  0% { opacity: 0.5; box-shadow: 0 0 5px var(--pastel-gold-glow); }
+  100% { opacity: 1; box-shadow: 0 0 15px var(--pastel-gold); }
+}
+
+/* -------------------------------------------------------------
+   🎪 ACTO 1: PANTALLA DE BIENVENIDA
+   ------------------------------------------------------------- */
+.welcome-card {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.circus-tent-icon {
+  font-size: 4rem;
+  display: inline-block;
+  margin-bottom: 10px;
+  animation: bounceSlow 2s ease infinite;
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+}
+
+.welcome-title {
+  font-size: 2rem;
+  color: var(--primary-pink-dark);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.welcome-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.banner-img-preview {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  border: 3px solid var(--white);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-pink), var(--primary-pink-dark));
+  color: var(--white);
+  border: none;
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 107, 129, 0.35);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 30px rgba(255, 107, 129, 0.45);
+}
+
+/* -------------------------------------------------------------
+   🎪 ACTO 2: TRIVIA / PREGUNTAS
+   ------------------------------------------------------------- */
+.progress-bar-container {
+  margin-bottom: 20px;
+}
+
+.ticket-tracker {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.ticket-dot {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--pastel-lavender);
+  border: 2px solid var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.ticket-dot.active {
+  background: var(--pastel-yellow);
+  color: var(--primary-pink-dark);
+  border-color: var(--primary-pink);
+  transform: scale(1.15);
+  box-shadow: 0 0 12px var(--pastel-gold-glow);
+}
+
+.ticket-dot.completed {
+  background: var(--pastel-mint);
+  color: var(--white);
+  border-color: var(--pastel-mint);
+}
+
+.act-badge {
+  display: inline-block;
+  background: var(--pastel-lavender);
+  color: var(--primary-pink-dark);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.question-text {
+  font-size: 1.35rem;
+  color: var(--text-dark);
+  line-height: 1.4;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.option-btn {
+  background: var(--white);
+  border: 2px solid rgba(255, 133, 161, 0.3);
+  padding: 16px 20px;
+  border-radius: 16px;
+  font-family: inherit;
+  font-size: 1.05rem;
+  color: var(--text-dark);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.option-btn:hover {
+  background: #FFFDFE;
+  border-color: var(--primary-pink);
+  transform: translateX(6px);
+  box-shadow: 0 6px 15px rgba(255, 133, 161, 0.15);
+}
+
+.option-btn.correct {
+  background: #E8FADF !important;
+  border-color: #52B788 !important;
+  color: #1B4332 !important;
+  font-weight: 600;
+}
+
+.option-btn.wrong {
+  background: #FFE5E5 !important;
+  border-color: #FF6B6B !important;
+  color: #900C3F !important;
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.quiz-footer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(125, 107, 131, 0.2);
+}
+
+.hint-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.hint-btn:hover {
+  color: var(--primary-pink-dark);
+}
+
+.hint-box {
+  background: var(--pastel-peach);
+  border-left: 4px solid var(--primary-pink);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  margin-top: 12px;
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+/* -------------------------------------------------------------
+   🎪 ACTO 3: GRAN FINALE (MESA Y MENSAJE)
+   ------------------------------------------------------------- */
+.finale-card {
+  text-align: center;
+  animation: zoomIn 0.8s ease;
+}
+
+@keyframes zoomIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.finale-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--pastel-yellow), var(--pastel-gold));
+  color: #5C4000;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px var(--pastel-gold-glow);
+}
+
+.finale-recipient {
+  font-size: 2.2rem;
+  color: var(--primary-pink-dark);
+  margin-bottom: 8px;
+}
+
+.finale-title {
+  font-size: 1.4rem;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+/* Marco de Foto Vintage de Circo */
+.photo-frame-container {
+  position: relative;
+  display: inline-block;
+  margin: 10px 0 24px;
+}
+
+.photo-frame {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  padding: 10px;
+  background: linear-gradient(135deg, var(--pastel-yellow), var(--primary-pink));
+  box-shadow: 0 12px 30px rgba(255, 133, 161, 0.3), 0 0 0 6px var(--white);
+  margin: 0 auto;
+  position: relative;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--white);
+}
+
+.photo-caption {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.message-box {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 24px;
+  border: 2px dashed var(--primary-pink);
+  margin-bottom: 30px;
+  text-align: left;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  color: var(--text-dark);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+  white-space: pre-line;
+}
+
+/* Sección de Cupones de Regalo */
+.coupons-section-title {
+  font-size: 1.2rem;
+  color: var(--primary-pink-dark);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.coupons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.coupon-ticket {
+  background: linear-gradient(135deg, #FFF9FA, #FFF3F5);
+  border: 2px solid var(--primary-pink);
+  border-radius: 14px;
+  padding: 14px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.coupon-ticket:hover {
+  transform: translateY(-4px) rotate(1deg);
+  box-shadow: 0 8px 18px rgba(255, 133, 161, 0.2);
+}
+
+.coupon-ticket.claimed {
+  background: var(--pastel-mint);
+  border-color: #52B788;
+  color: var(--white);
+}
+
+.coupon-icon {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+.coupon-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.coupon-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.coupon-ticket.claimed .coupon-desc {
+  color: rgba(255,255,255,0.9);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--primary-pink-dark);
+  border: 2px solid var(--primary-pink);
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-secondary:hover {
+  background: var(--primary-pink);
+  color: var(--white);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+  .marquee-frame {
+    padding: 16px;
+    border-radius: 20px;
+  }
+  
+  .welcome-title {
+    font-size: 1.6rem;
+  }
+  
+  .question-text {
+    font-size: 1.15rem;
+  }
+  
+  .photo-frame {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .coupons-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

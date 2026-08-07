@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circo Mágico de Cumpleaños 🎪✨</title>
+  <meta name="description" content="Una experiencia interactiva y especial en forma de circo mágico para celebrar un cumpleaños inolvidable.">
+  
+  <!-- Tipografías de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Hoja de Estilos -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Fondo de Rayas Pastel de Circo -->
+  <div class="circus-bg-pattern"></div>
+
+  <!-- Canvas Overlay para Confeti y Efectos -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Cortinas de la Gran Carpa Final (Animación Reveal) -->
+  <div id="curtains-container" class="curtains-container">
+    <div class="curtain-valance">
+      <span>⭐</span><span>🎪</span><span>✨</span><span>🎉</span><span>🎪</span><span>⭐</span>
+    </div>
+    <div class="curtain curtain-left"></div>
+    <div class="curtain curtain-right"></div>
+  </div>
+
+  <!-- Encabezado Superior (Barra de Control) -->
+  <header class="top-header">
+    <div class="brand-badge">
+      <span>🎪</span>
+      <span id="brand-title">Circo Mágico</span>
+    </div>
+    <button id="audio-toggle-btn" class="audio-btn">
+      🎵 Activar Música
+    </button>
+  </header>
+
+  <!-- Contenedor Principal de la Experiencia -->
+  <main class="main-wrapper">
+    <div class="marquee-frame">
+      <div class="marquee-lights"></div>
+      
+      <!-- Área donde el motor app.js renderizará los Actos (Bienvenida, Trivia, Finale) -->
+      <div id="quiz-content"></div>
+    </div>
+  </main>
+
+  <!-- Scripts de Configuración y Aplicación -->
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
