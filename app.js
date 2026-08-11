@@ -4,7 +4,7 @@
  * Maneja el flujo de la trivia, animaciones de cortina, confeti,
  * efectos de sonido generados con Web Audio API y cupones de regalo.
  */
-// Updated for new commit
+
 
 // Estado global de la aplicación
 const AppState = {
@@ -44,7 +44,7 @@ const specialMessages = [
   "aunque lleva tiempo",
   "Ya la superaste?",
   "No?",
-  ":("
+  ":(",
 
     "Bueno, algun dia lo dejaras ir pero parece que no sera hoy",
     "Me da pena por ti pero bueno",
