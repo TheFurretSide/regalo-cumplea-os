@@ -11,8 +11,40 @@ const AppState = {
   score: 0,
   audioPlaying: false,
   audioCtx: null,
-  bgMusicInterval: null
+  bgMusicInterval: null,
+  specialMessageIndex: 0 // tracks special message progress for question 4
 };
+
+// Mensajes especiales que se muestran cuando se elige la cuarta opción incorrecta del Acto 4
+const specialMessages = [
+  "Ijoles te equivocaste :(",
+  "Oye... te volviste a equivocar",
+  "No, no es esta",
+  "No te queda claro?",
+  "Ya van 5 veces maichu...",
+  "Aceptalo, esta mal",
+  "Dejalo ir",
+  "Dejar ir es amar maichu",
+  "Porfavor no vale la pena",
+  "Ya esta",
+  "Porfavor",
+  "No va a ser correcta rindete",
+  "No vas a lograr nada",
+  "Aparte ves por quien estas peleando?",
+  "De todos... nagito????",
+  "Se que existen gustos malo pero los tuyos...",
+  "No va a funcionar ",
+  "Si sigues vas a perder mas tu tiempo",
+  "Tu sabes cual es la correcta en verdad esta es una mentira",
+  "Que determinacion, lastima que sea por este wey...",
+  "Podrias haber terminado el quiz, pero decidiste sacrificar tu tiempo por... ni te lo voy a recordar ya sabes quien es",
+  "ESTAS CIEGA??? ESTA NO ES MAITENA",
+  "LA NEGACION ES MALA TIENES QUE SUPERAR ESTA ETAPA",
+  "aunque lleva tiempo",
+  "Ya la superaste?",
+  "No?",
+  ":("
+];
 
 // Background music handling
 let backgroundAudio = null;
@@ -256,30 +288,31 @@ function renderQuestion() {
     `;
   }).join("");
 
-  container.innerHTML = `
-    <div class="fade-in">
-      <div class="progress-bar-container">
-        <div class="ticket-tracker">${dotsHtml}</div>
-      </div>
-      
-      <div class="act-badge">${q.actTitle || `Acto ${AppState.currentIndex + 1}`}</div>
-      <h2 class="question-text">${q.question}</h2>
-      
-      <div class="options-grid">
-        ${optionsHtml}
-      </div>
+    container.innerHTML = `
+      <div class="fade-in">
+        <div class="progress-bar-container">
+          <div class="ticket-tracker">${dotsHtml}</div>
+        </div>
 
-      <div class="quiz-footer-actions">
-        <button class="hint-btn" onclick="toggleHint()">
-          🪄 ¿Necesitas una pista del Mago?
-        </button>
-      </div>
+        <div class="act-badge">${q.actTitle || `Acto ${AppState.currentIndex + 1}`}</div>
+        <div id="special-box" class="special-box" aria-live="assertive" style="display:none;"></div>
+        <h2 class="question-text">${q.question}</h2>
 
-      <div id="hint-box" class="hint-box">
-        ${q.hint}
+        <div class="options-grid">
+          ${optionsHtml}
+        </div>
+
+        <div class="quiz-footer-actions">
+          <button class="hint-btn" onclick="toggleHint()">
+            🪄 ¿Necesitas una pista del Mago?
+          </button>
+        </div>
+
+        <div id="hint-box" class="hint-box">
+          ${q.hint}
+        </div>
       </div>
-    </div>
-  `;
+    `;
 }
 
 // Toggle Pista del Mago
@@ -316,13 +349,41 @@ function checkAnswer(selectedIndex, btnElement) {
       renderQuestion();
     }, 1600);
   } else {
-    btnElement.classList.add("wrong");
-    // Play cancel sound for wrong answer
-    playCancelSound();
-    // Reactivar botones para permitir nuevo intento
-    setTimeout(() => {
-      allOptionBtns.forEach(btn => btn.style.pointerEvents = "auto");
-    }, 1200);
+    // Special handling for the fourth option (index 3) of Act 4 (question id 4)
+    if (currentQ.id === 4 && selectedIndex === 3) {
+      // Mostrar mensaje especial correspondiente
+      const message = specialMessages[AppState.specialMessageIndex] || "";
+      const specialBox = document.getElementById("special-box");
+        if (specialBox) {
+          specialBox.style.display = "block";
+          specialBox.innerHTML = `<p>${message}</p>`;
+        }
+      // Avanzar al siguiente mensaje
+      AppState.specialMessageIndex = (AppState.specialMessageIndex + 1) % specialMessages.length;
+      // Si hemos completado la lista, desactivar la cuarta opción
+      if (AppState.specialMessageIndex === 0) {
+        const fourthBtn = allOptionBtns[3];
+        fourthBtn.disabled = true;
+        fourthBtn.style.pointerEvents = "none";
+        fourthBtn.classList.add("disabled");
+      }
+      // Sonido de cancelación para respuesta incorrecta
+      playCancelSound();
+      // Reactivar los demás botones después de un breve retraso
+      setTimeout(() => {
+        allOptionBtns.forEach((btn, idx) => {
+          if (idx !== 3) btn.style.pointerEvents = "auto";
+        });
+      }, 1200);
+    } else {
+      btnElement.classList.add("wrong");
+      // Play cancel sound for wrong answer
+      playCancelSound();
+      // Reactivar botones para permitir nuevo intento
+      setTimeout(() => {
+        allOptionBtns.forEach(btn => btn.style.pointerEvents = "auto");
+      }, 1200);
+    }
   }
 }
 

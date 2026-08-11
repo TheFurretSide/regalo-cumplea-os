@@ -453,6 +453,19 @@ body {
   animation: fadeIn 0.3s ease;
 }
 
+/* Special message box displayed before the question (for fourth option) */
+.special-box {
+  background: var(--pastel-peach);
+  border-left: 4px solid var(--primary-pink-dark);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  margin-top: 12px;
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
 /* -------------------------------------------------------------
    🎪 ACTO 3: GRAN FINALE (MESA Y MENSAJE)
    ------------------------------------------------------------- */
