@@ -48,12 +48,22 @@ function renderAppTitle() {
 // -------------------------------------------------------------
 // 🔊 MOTOR DE EFECTOS DE SONIDO SINTETIZADOS (Sin archivos externos)
 // -------------------------------------------------------------
+function toggleMusicButton() {
+  const audioBtn = document.getElementById("audio-toggle-btn");
+  if (!backgroundAudio) return;
+  if (backgroundAudio.paused) {
+    backgroundAudio.play().catch(() => {});
+    if (audioBtn) audioBtn.innerHTML = "🔊 Pausar Música";
+  } else {
+    backgroundAudio.pause();
+    if (audioBtn) audioBtn.innerHTML = "🎵 Activar Música";
+  }
+}
+
 function setupAudioEngine() {
   const audioBtn = document.getElementById("audio-toggle-btn");
   if (audioBtn) {
-    audioBtn.addEventListener("click", () => {
-      toggleBackgroundMusic();
-    });
+    audioBtn.addEventListener("click", toggleMusicButton);
   }
 }
 
@@ -174,6 +184,9 @@ function startQuiz() {
     backgroundAudio.pause();
   }
   playBackgroundTrack('audio/ashes_theme.mp3');
+  // Update button label to indicate music is playing
+  const audioBtn = document.getElementById("audio-toggle-btn");
+  if (audioBtn) audioBtn.innerHTML = "🔊 Pausar Música";
   playCorrectSound();
   AppState.currentIndex = 0;
   AppState.score = 0;
