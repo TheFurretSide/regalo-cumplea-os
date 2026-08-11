@@ -86,7 +86,7 @@ const QUIZ_CONFIG = {
 
   // Gran mensaje final que se revela al abrir las cortinas
   finalMessage: {
-    recipientName: "¡FELIZ CUMPLEAÑOS! 🎂",
+    recipientName: "LO LOGRASTE!",
     messageTitle: "🎪 ¡La Gran Carpa Sorpresa Se Ha Abierto! 🎪",
     messageText: `¡Hoy celebramos tu vida, tu alegría y cada uno de los momentos hermosos que compartimos contigo! \
 Gracias por contagiar a todos con tu energía tan especial, por tus risas y por ser una persona verdaderamente increíble. Que este nuevo año de vida venga cargado de salud, amor, proyectos exitosos y todas las sorpresas maravillosas que te mereces. \
