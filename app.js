@@ -4,6 +4,7 @@
  * Maneja el flujo de la trivia, animaciones de cortina, confeti,
  * efectos de sonido generados con Web Audio API y cupones de regalo.
  */
+// Updated for new commit
 
 // Estado global de la aplicación
 const AppState = {
