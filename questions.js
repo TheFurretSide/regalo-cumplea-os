@@ -8,8 +8,8 @@
 const QUIZ_CONFIG = {
   // Título y encabezado principal
   title: "Circo Mágico de Cumpleaños 🎪✨",
-  welcomeTitle: "¡Bienvenid@ a la Gran Función Especial!",
-  welcomeSubtitle: "Demuestra cuánto conoces al cumpleañer@ completando los actos de la trivia. ¡Al responder correctamente desbloquearás la Carpa Principal con tu sorpresa!",
+  welcomeTitle: "Bienvenida al maravilloso circo digital! ACTIVA LA MUSICA ANTES DE",
+  welcomeSubtitle: "Bueno en verdad no, aun no desarrollo la habilidad para capturarte en una computadora y atraparte por la eternidad en un circo pero el dia que lo haga... bueno tampoco pero te invitaria a capturar gente y hacerla sufrir (manguito) a lo que si a puedo invitarte es a UN MINI QUIZ!!!! vas a pasar por diferentes preguntas donde solo habra 1 respuesta correcta :D si no te la sabes nimodo que mensa pero si si vas a pasar a la siguiente pregunta, deberias activar la musica para una experiencia mas agradable la verdad, aunque creo que esto es algo que te tuve que decir al empezar el mensaje asi que voy a ponerlo ahora mismo, creo que con esto ya viste pq lo puse en mayusculas pero bueno espero te la pases bien en estas preguntas :3 o talvez no....."
   
   // Lista de preguntas de la trivia (puedes agregar o modificar cuantas quieras)
   questions: [

@@ -146,7 +146,7 @@ function renderWelcomeScreen() {
       <img src="img/circus_banner.jpg?v=2" alt="Circo Mágico de Cumpleaños" class="banner-img-preview" onerror="this.style.display='none'" />
       
       <button class="btn-primary" onclick="startQuiz()">
-        🎟️ ¡Entrar a la Carpa & Iniciar Trivia! ✨
+         Empieza la abstrac‑digo las preguntas..
       </button>
     </div>
   `;
