@@ -112,10 +112,10 @@ function playAudio(src) {
 }
 // Cancel sounds (wrong answer)
 const cancelSounds = [
-  "Cancel1.wav",
-  "Cancel2.wav",
-  "cancel11.wav",
-  "cancel6.wav"
+  "./Cancel1.wav",
+  "./Cancel2.wav",
+  "./cancel11.wav",
+  "./cancel6.wav"
 ];
 function playCancelSound() {
   const idx = Math.floor(Math.random() * cancelSounds.length);
@@ -123,10 +123,10 @@ function playCancelSound() {
 }
 // Decision sounds (correct answer)
 const decisionSounds = [
-  "decision24.wav",
-  "decision25.wav",
-  "decision4.wav",
-  "decision5.wav"
+  "./decision24.wav",
+  "./decision25.wav",
+  "./decision4.wav",
+  "./decision5.wav"
 ];
 function playDecisionSound() {
   const idx = Math.floor(Math.random() * decisionSounds.length);
@@ -312,8 +312,7 @@ function checkAnswer(selectedIndex, btnElement) {
     btnElement.classList.add("wrong");
     // Play cancel sound for wrong answer
     playCancelSound();
-    // Marcar también la correcta
-    allOptionBtns[currentQ.correctIndex].classList.add("correct");
+    // No marcar la respuesta correcta en caso de error
     // Reactivar botones para permitir nuevo intento
     setTimeout(() => {
       allOptionBtns.forEach(btn => btn.style.pointerEvents = "auto");
