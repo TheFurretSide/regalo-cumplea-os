@@ -309,7 +309,10 @@ function triggerGrandFinale() {
 function renderFinaleScreen() {
   const container = document.getElementById("quiz-content");
   const final = QUIZ_CONFIG.finalMessage;
-
+  
+  // Play the final storybook music
+  playBackgroundTrack("【Witch's Heart OST】 Storybook.mp3");
+  
   const couponsHtml = final.coupons ? final.coupons.map(c => `
     <div class="coupon-ticket" onclick="claimCoupon(this)">
       <div class="coupon-icon">${c.icon}</div>
