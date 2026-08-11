@@ -104,6 +104,35 @@ function playTone(freq, type = "sine", duration = 0.2, volume = 0.15) {
     console.log("Audio not allowed yet", e);
   }
 }
+// Helper to play a short audio file (wav/mp3)
+function playAudio(src) {
+  const a = new Audio(src);
+  a.volume = 0.5;
+  a.play().catch(() => {});
+}
+// Cancel sounds (wrong answer)
+const cancelSounds = [
+  "Cancel1.wav",
+  "Cancel2.wav",
+  "cancel11.wav",
+  "cancel6.wav"
+];
+function playCancelSound() {
+  const idx = Math.floor(Math.random() * cancelSounds.length);
+  playAudio(cancelSounds[idx]);
+}
+// Decision sounds (correct answer)
+const decisionSounds = [
+  "decision24.wav",
+  "decision25.wav",
+  "decision4.wav",
+  "decision5.wav"
+];
+function playDecisionSound() {
+  const idx = Math.floor(Math.random() * decisionSounds.length);
+  playAudio(decisionSounds[idx]);
+}
+
 
 // Sonido de respuesta correcta (Acorde arpegiado brillante)
 function playCorrectSound() {
@@ -267,24 +296,30 @@ function checkAnswer(selectedIndex, btnElement) {
   
   // Deshabilitar todos los botones para evitar doble clic
   allOptionBtns.forEach(btn => btn.style.pointerEvents = "none");
-
+  
   if (selectedIndex === currentQ.correctIndex) {
     btnElement.classList.add("correct");
-    playCorrectSound();
+    // Play decision sound for correct answer
+    playDecisionSound();
     launchConfettiBurst();
     AppState.score++;
+    // Advance after short delay
+    setTimeout(() => {
+      AppState.currentIndex++;
+      renderQuestion();
+    }, 1600);
   } else {
     btnElement.classList.add("wrong");
-    playWrongSound();
+    // Play cancel sound for wrong answer
+    playCancelSound();
     // Marcar también la correcta
     allOptionBtns[currentQ.correctIndex].classList.add("correct");
+    // Reactivar botones para permitir nuevo intento
+    setTimeout(() => {
+      allOptionBtns.forEach(btn => btn.style.pointerEvents = "auto");
+    }, 1200);
+    // No avanzar a la siguiente pregunta
   }
-
-  // Avanzar a la siguiente pregunta tras breve pausa
-  setTimeout(() => {
-    AppState.currentIndex++;
-    renderQuestion();
-  }, 1600);
 }
 
 // -------------------------------------------------------------
