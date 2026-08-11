@@ -50,7 +50,12 @@ function renderAppTitle() {
 // -------------------------------------------------------------
 function toggleMusicButton() {
   const audioBtn = document.getElementById("audio-toggle-btn");
-  if (!backgroundAudio) return;
+  // Initialise backgroundAudio with Claire if not yet created
+  if (!backgroundAudio) {
+    playBackgroundTrack('audio/claire.mp3');
+    if (audioBtn) audioBtn.innerHTML = "🔊 Pausar Música";
+    return;
+  }
   if (backgroundAudio.paused) {
     backgroundAudio.play().catch(() => {});
     if (audioBtn) audioBtn.innerHTML = "🔊 Pausar Música";
@@ -173,18 +178,14 @@ function renderWelcomeScreen() {
       </button>
     </div>
   `;
-  // Play welcome music (Claire) in loop
-  playBackgroundTrack('audio/claire.mp3');
+  // No auto‑play on welcome; music will start when user presses the button
 }
 
 // Iniciar Trivia
 function startQuiz() {
-  // Stop welcome music and start quiz music
-  if (backgroundAudio) {
-    backgroundAudio.pause();
-  }
+  // Switch to quiz music (Ashes theme) without resetting audio object
   playBackgroundTrack('audio/ashes_theme.mp3');
-  // Update button label to indicate music is playing
+  // Ensure button reflects playing state
   const audioBtn = document.getElementById("audio-toggle-btn");
   if (audioBtn) audioBtn.innerHTML = "🔊 Pausar Música";
   playCorrectSound();
