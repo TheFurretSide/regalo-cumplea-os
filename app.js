@@ -124,10 +124,10 @@ function playCancelSound() {
 }
 // Decision sounds (correct answer)
 const decisionSounds = [
-  "./decision24.wav",
-  "./decision25.wav",
-  "./decision4.wav",
-  "./decision5.wav"
+  "audio/decision24.wav",
+  "audio/decision25.wav",
+  "audio/decision4.wav",
+  "audio/decision5.wav"
 ];
 function playDecisionSound() {
   const idx = Math.floor(Math.random() * decisionSounds.length);
