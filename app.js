@@ -112,14 +112,15 @@ function playAudio(src) {
 }
 // Cancel sounds (wrong answer)
 const cancelSounds = [
-  "./Cancel1.wav",
-  "./Cancel2.wav",
-  "./cancel11.wav",
-  "./cancel6.wav"
+  "audio/Cancel2.wav",
+  "audio/cancel11.wav",
+  "audio/cancel6.wav"
 ];
 function playCancelSound() {
   const idx = Math.floor(Math.random() * cancelSounds.length);
-  playAudio(cancelSounds[idx]);
+  const src = cancelSounds[idx];
+  console.log('Playing cancel sound:', src);
+  playAudio(src);
 }
 // Decision sounds (correct answer)
 const decisionSounds = [
@@ -130,7 +131,9 @@ const decisionSounds = [
 ];
 function playDecisionSound() {
   const idx = Math.floor(Math.random() * decisionSounds.length);
-  playAudio(decisionSounds[idx]);
+  const src = decisionSounds[idx];
+  console.log('Playing decision sound:', src);
+  playAudio(src);
 }
 
 
