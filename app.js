@@ -299,8 +299,12 @@ function checkAnswer(selectedIndex, btnElement) {
   
   // Deshabilitar todos los botones para evitar doble clic
   allOptionBtns.forEach(btn => btn.style.pointerEvents = "none");
-  
-  if (selectedIndex === currentQ.correctIndex) {
+
+  const isCorrect = Array.isArray(currentQ.correctIndices)
+    ? currentQ.correctIndices.includes(selectedIndex)
+    : selectedIndex === currentQ.correctIndex;
+
+  if (isCorrect) {
     btnElement.classList.add("correct");
     // Play decision sound for correct answer
     playDecisionSound();
@@ -315,12 +319,10 @@ function checkAnswer(selectedIndex, btnElement) {
     btnElement.classList.add("wrong");
     // Play cancel sound for wrong answer
     playCancelSound();
-    // No marcar la respuesta correcta en caso de error
     // Reactivar botones para permitir nuevo intento
     setTimeout(() => {
       allOptionBtns.forEach(btn => btn.style.pointerEvents = "auto");
     }, 1200);
-    // No avanzar a la siguiente pregunta
   }
 }
 
