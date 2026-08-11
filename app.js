@@ -44,6 +44,15 @@ const specialMessages = [
   "Ya la superaste?",
   "No?",
   ":("
+
+    "Bueno, algun dia lo dejaras ir pero parece que no sera hoy",
+    "Me da pena por ti pero bueno",
+    "Ya esta es la penultima, aun tienes 1 oportunidad para arrepentirte y escoger la correcta, confio en ti",
+    "... te doy otra",
+    "........... ok ahora si es la ultima",
+    "MAITU PORFAVOR 😭😭😭",
+    "AHORA SI ESTA ES LA ULTIMA SI VUELVAS A ESCOGERLA ME VOY A SENTIR MUY DEPECIONADO",
+    "...Que decepcion, pero asi te quiero con tus gustos culeros <3",
 ];
 
 // Background music handling
@@ -331,7 +340,7 @@ function checkAnswer(selectedIndex, btnElement) {
   const allOptionBtns = document.querySelectorAll(".option-btn");
   
   // Deshabilitar todos los botones para evitar doble clic
-  allOptionBtns.forEach(btn => btn.style.pointerEvents = "none");
+
 
   const isCorrect = Array.isArray(currentQ.correctIndices)
     ? currentQ.correctIndices.includes(selectedIndex)
@@ -371,8 +380,9 @@ function checkAnswer(selectedIndex, btnElement) {
       playCancelSound();
       // Reactivar los demás botones después de un breve retraso
       setTimeout(() => {
-        allOptionBtns.forEach((btn, idx) => {
-          if (idx !== 3) btn.style.pointerEvents = "auto";
+        allOptionBtns.forEach(btn => {
+          btn.style.pointerEvents = "auto";
+          btn.disabled = false;
         });
       }, 1200);
     } else {
