@@ -28,8 +28,9 @@ function initApp() {
 
 function renderAppTitle() {
   document.title = QUIZ_CONFIG.title;
-  const brandTitle = document.getElementById("brand-title");
-  if (brandTitle) brandTitle.textContent = QUIZ_CONFIG.title;
+   // Preserve custom brand title; only set document title
+   // const brandTitle = document.getElementById("brand-title");
+   // if (brandTitle) brandTitle.textContent = QUIZ_CONFIG.title;
 }
 
 // -------------------------------------------------------------
