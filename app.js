@@ -14,6 +14,18 @@ const AppState = {
   bgMusicInterval: null
 };
 
+// Background music handling
+let backgroundAudio = null;
+function playBackgroundTrack(src, loop = true) {
+  if (!backgroundAudio) {
+    backgroundAudio = new Audio();
+    backgroundAudio.volume = 0.5;
+  }
+  backgroundAudio.src = src;
+  backgroundAudio.loop = loop;
+  backgroundAudio.play().catch(() => {});
+}
+
 // Inicialización cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
   initApp();
@@ -151,10 +163,17 @@ function renderWelcomeScreen() {
       </button>
     </div>
   `;
+  // Play welcome music (Claire) in loop
+  playBackgroundTrack('audio/claire.mp3');
 }
 
 // Iniciar Trivia
 function startQuiz() {
+  // Stop welcome music and start quiz music
+  if (backgroundAudio) {
+    backgroundAudio.pause();
+  }
+  playBackgroundTrack('audio/ashes_theme.mp3');
   playCorrectSound();
   AppState.currentIndex = 0;
   AppState.score = 0;
