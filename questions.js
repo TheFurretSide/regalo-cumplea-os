@@ -87,12 +87,24 @@ const QUIZ_CONFIG = {
   // Gran mensaje final que se revela al abrir las cortinas
   finalMessage: {
     recipientName: "LO LOGRASTE!",
-    messageTitle: "🎪 ¡La Gran Carpa Sorpresa Se Ha Abierto! 🎪",
-    messageText: `¡Hoy celebramos tu vida, tu alegría y cada uno de los momentos hermosos que compartimos contigo! \
-Gracias por contagiar a todos con tu energía tan especial, por tus risas y por ser una persona verdaderamente increíble. Que este nuevo año de vida venga cargado de salud, amor, proyectos exitosos y todas las sorpresas maravillosas que te mereces. \
-¡Que comience la función de un año lleno de magia! ✨💖🎈`,
-    imageSrc: "img/cumpleanero.jpg?v=2",
-    imageCaption: "📸 ¡El/La protagonista de esta gran fiesta de cumpleaños!",
+    messageTitle: "FELIZ CUMPLEAÑOS WACHINA (atrasado)",
+    messageText: `¡HOOOOOOOOOOLA, MAITU! ¿Cómo estás? ¿Bien? ¿Cómo la pasaste? Ya sé que la pasaste bien y que fue un día propicio. Espero también que disfrutaras los tomates y que aprovecharas para hacerte algo con ellos, porque si no, ¿qué esperas? Probablemente ya estén podridos para la fecha en que te entrego esto, pero no pasa nada, un poco de sal lo arregla :p
+
+Ya sé, vengo tarde, ya sé que ya casi pasa una semana o más de tu cumple, pero se me prendió el coco a última hora para hacerte algo más especial y que no fuera un simple "fc🗣🔥", que yo sé que estás feliz con eso, pero eso no significa que no te merezcas algo más, ¿sabes?
+
+Prácticamente es tu último año donde el 1 predomina en tu edad, y cuando te mandes una cagada o algo por el estilo no va a sonar tan fuerte, porque jaja es muy diferente a que digan "tiene 20" a "19", ¡así que el mejor consejo que puedo darte es DISFRUTA DE LA MEJOR MANERA QUE PUEDAS! Reíte, enojate, frustrate, gritá, pegá, comé lo que te salga del reverendo cul... digo, del alma, y echale ganas a todo lo que te apasiona.
+
+De igual manera, que estés más cerca de los 20 no significa que te tengas que dejar comer por eso de llegar a los 20; puede que la edad suene más seria, pero no significa que debas dejar de hacer todo lo que te hace ser tú :p Aún te quedan muchos años por vivir para ponerte seria a una edad muy en específico, así que no dejes que te carcoma eso. Y cuando empiece a carcomerte, siempre puedes volver a esta página para leer lo que te puse y decirte "Pues ¿chad, no?" (tal vez no eso, pero para que te refresques la memoria y puedas seguir sin tanto pesar).
+
+¿Qué te digo que no sepas? Que te quiero, que te adoro, que TE AMO de una manera muy fuerte y no me da pena decirlo ni gritarlo en público. Sos la mejor amiga que pude haber deseado en muchos años, con un humor que los dos manejamos y donde el tiempo se me va volando siempre que estamos en llamada <3 Me encanta pasar tiempo con los chicos, pero las veces que nos quedamos los dos solitos hablando son las que más me llenan. Me siento seguro con alguien como tú y con las pláticas estúpidas que tenemos; cada chiste rancio o repetitivo siempre se siente fresco y con gracia, no importa cuántas veces lo repitamos, con que seas tú, lo hace especial y único.
+
+Estoy muy orgulloso de cómo avanzaste en muchas cosas: tu vida personal, vida en internet, arte, metas, y muchas cosas en las que he notado una mejora. Aunque hayas tenido tus momentos de bajón o no estuvieras al 100, todavía seguías con esa chispa que te mantiene como sos y eso es de admirar. Sos una persona de valor, de amor y de ternura, muy bonita a tu manera; tan única, que tener a alguien como tú en nuestras vidas es prácticamente un regalo divino y, a veces, tonto, ¡pero regalo es regalo y es lo único que cuenta!
+
+Y nada, espero que te hiciera reír aunque sea un poco o te pareciera bonito. ¡Un cumpleaños más que paso contigo y uno menos para cuando lo podamos celebrar en persona (IRL)! Así que es cuestión de tiempo para que llegue el momento :3 Recuerda que si se te cae el mundo, tendrás siempre a un grupo que estará detrás de ti, y si el grupo no está, tendrás a una persona que siempre te va a apoyar en lo que hagas... y si ya no está, es porque me morí.
+
+Te quiere tu gran amigo, Furret ❤`,
+    imageSrc: "maishu.png",
+    imageCaption: "mira la cara de tonta que tenes (no tenes otra)",
     coupons: [
       { id: 1, icon: "🍦", title: "Vale por un Helado", description: "Válido por un helado gigante de tu sabor favorito." },
       { id: 2, icon: "🎬", title: "Vale por Noche de Pelis", description: "Poblado de palomitas y tú eliges la película." },
