@@ -178,16 +178,10 @@ function playDecisionSound() {
   playAudio(src);
 }
 
-
-// Sonido de respuesta correcta (Acorde arpegiado brillante)
 function playCorrectSound() {
-  const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
-  notes.forEach((freq, idx) => {
-    setTimeout(() => playTone(freq, "triangle", 0.3, 0.2), idx * 80);
-  });
+  playAudio("audio/enter16.wav");
 }
 
-// Sonido de respuesta incorrecta (Zumbido sutil)
 function playWrongSound() {
   playTone(220, "sawtooth", 0.25, 0.15);
   setTimeout(() => playTone(180, "sawtooth", 0.3, 0.15), 150);
@@ -311,28 +305,8 @@ function renderQuestion() {
         <div class="options-grid">
           ${optionsHtml}
         </div>
-
-        <div class="quiz-footer-actions">
-          <button class="hint-btn" onclick="toggleHint()">
-            🪄 ¿Necesitas una pista del Mago?
-          </button>
-        </div>
-
-        <div id="hint-box" class="hint-box">
-          ${q.hint}
-        </div>
       </div>
     `;
-}
-
-// Toggle Pista del Mago
-function toggleHint() {
-  const hintBox = document.getElementById("hint-box");
-  if (hintBox) {
-    const isVisible = hintBox.style.display === "block";
-    hintBox.style.display = isVisible ? "none" : "block";
-    if (!isVisible) playTone(880, "sine", 0.15, 0.1);
-  }
 }
 
 // Validar Respuesta Seleccionada
@@ -423,18 +397,10 @@ function renderFinaleScreen() {
   
   // Play the final storybook music
   playBackgroundTrack("【Witch's Heart OST】 Storybook.mp3");
-  
-  const couponsHtml = final.coupons ? final.coupons.map(c => `
-    <div class="coupon-ticket" onclick="claimCoupon(this)">
-      <div class="coupon-icon">${c.icon}</div>
-      <div class="coupon-title">${c.title}</div>
-      <div class="coupon-desc">${c.description}</div>
-    </div>
-  `).join("") : "";
 
   container.innerHTML = `
     <div class="finale-card">
-      <div class="finale-badge">⭐ ¡CARPA PRINCIPAL DESBLOQUEADA! ⭐</div>
+      <div class="finale-badge">⭐ UNAS RESPUESTAS PROPICIAS ⭐</div>
       <h1 class="finale-recipient">${final.recipientName}</h1>
       <h3 class="finale-title">${final.messageTitle}</h3>
       
@@ -448,43 +414,10 @@ function renderFinaleScreen() {
       <div class="message-box">
         ${final.messageText}
       </div>
-
-      ${couponsHtml ? `
-        <div class="coupons-section-title">
-          🎟️ Tus Vales de Regalo Especiales (Haz clic para canjear)
-        </div>
-        <div class="coupons-grid">
-          ${couponsHtml}
-        </div>
-      ` : ""}
-
-      <button class="btn-secondary" onclick="restartApp()">
-        🔄 Volver a Vivir la Función
-      </button>
     </div>
   `;
 }
 
-// Canjear Vale de Regalo
-function claimCoupon(couponEl) {
-  if (!couponEl.classList.contains("claimed")) {
-    couponEl.classList.add("claimed");
-    playCorrectSound();
-    launchConfettiBurst();
-  }
-}
-
-// Reiniciar Experiencia
-function restartApp() {
-  const curtainsContainer = document.getElementById("curtains-container");
-  if (curtainsContainer) {
-    curtainsContainer.classList.remove("open");
-    setTimeout(() => {
-      curtainsContainer.classList.remove("active");
-    }, 800);
-  }
-  startQuiz();
-}
 
 // -------------------------------------------------------------
 // 🎉 SISTEMA DE CONFETI EN CANVAS
