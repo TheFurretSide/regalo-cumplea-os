@@ -189,15 +189,7 @@ function playWrongSound() {
 
 // Fanfarria de la Gran Carpa Final
 function playFanfareSound() {
-  const fanfare = [
-    { freq: 523.25, time: 0, dur: 0.15 },
-    { freq: 659.25, time: 150, dur: 0.15 },
-    { freq: 783.99, time: 300, dur: 0.15 },
-    { freq: 1046.50, time: 450, dur: 0.6 }
-  ];
-  fanfare.forEach(note => {
-    setTimeout(() => playTone(note.freq, "sine", note.dur, 0.25), note.time);
-  });
+  playAudio("audio/enter16.wav");
 }
 
 // Música ambiental sintetizada estilo caja de música
